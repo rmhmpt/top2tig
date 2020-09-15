@@ -35,43 +35,4 @@ If the -s option was used, then the code will go through the processed file and 
 I've included this feature because I was getting timeouts during the export to Influx because the CSVs were massive and, although I don't have proof other than the behaviour I saw, I believe writing the headers with their lenghty strings was generating massive HTTP resquests. 
 This part of the code is inneficient, as it will run through the file multiple times. This could be optimised by writing multiple files at the same time and running through the file once.
 
-As for the Telegraf conf attached, appart from the timings and number of records to write, the input part is the most important:
-
-#INPUT PLUGINS#
-
-##I've used tail, because file would cycle through the CSV constantly importing the same values. With tail it'll import the values once
-[[inputs.tail]]
-  files = ["/home/esxtop/split12proc.csv"]
-
-##Read file from beginning.
-  from_beginning = true
-
-##The dataformat to be read from files
-  data_format = "csv"
-  
-##Indicates how many rows to treat as a header. By default, the parser assumes
-##there is no header and will parse the first row as data. If set to anything more
-##than 1, column names will be concatenated with the name listed in the next header row.
-##If `csv_column_names` is specified, the column names in header will be overridden.
-csv_header_row_count = 1
-
-##Indicates the number of rows to skip before looking for header information.
-csv_skip_rows = 0
-
-##Indicates the number of columns to skip before looking for data to parse.
-##These columns will be skipped in the header as well.
-csv_skip_columns = 0
- 
-##The character reserved for marking a row as a comment row
-##Commented rows are skipped and not parsed
-csv_comment = "@"
-
-##The column to extract time information for the metric
-##`csv_timestamp_format` must be specified if this is used
-csv_timestamp_column = "(PDH-CSV 4.0) (UTC)(0)"
-
-##The format of time data extracted from `csv_timestamp_column`
-##this must be specified if `csv_timestamp_column` is specified
-csv_timestamp_format = "02/01/2006 15:04:05"
-
-csv_delimiter=","
+As for the Telegraf conf attached, appart from the timings and number of records to write, the input part is the most important.
