@@ -67,12 +67,10 @@ csv_skip_columns = 0
 csv_comment = "@"
 
 ##The column to extract time information for the metric
-
 ##`csv_timestamp_format` must be specified if this is used
 csv_timestamp_column = "(PDH-CSV 4.0) (UTC)(0)"
 
 ##The format of time data extracted from `csv_timestamp_column`
-
 ##this must be specified if `csv_timestamp_column` is specified
 csv_timestamp_format = "02/01/2006 15:04:05"
 
